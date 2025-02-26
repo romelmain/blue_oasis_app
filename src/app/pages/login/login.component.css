@@ -100,7 +100,7 @@ body {
   margin-top: 10px;
 }
 
-.login input[type="button"] {
+.login button {
   width: 260px;
   height: 35px;
   background: #534eb4;
@@ -115,11 +115,15 @@ body {
   margin-top: 10px;
 }
 
-.login input[type="button"]:hover {
+.login button:focus {
+  outline: none;
+}
+
+.login button:hover {
   opacity: 0.8;
 }
 
-.login input[type="button"]:active {
+.login button:active {
   opacity: 0.6;
 }
 
@@ -131,10 +135,6 @@ body {
 .login input[type="password"]:focus {
   outline: none;
   border: 1px solid rgba(255, 255, 255, 0.9);
-}
-
-.login input[type="button"]:focus {
-  outline: none;
 }
 
 ::-webkit-input-placeholder {
