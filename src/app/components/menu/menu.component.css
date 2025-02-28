@@ -1,0 +1,41 @@
+/* Estilo para el contenedor del menú */
+
+span {
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.menu-horizontal {
+  list-style-type: none; /* Eliminar viñetas de la lista */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Hacer que los elementos se alineen horizontalmente */
+  justify-content: flex-start; /* Alineación a la izquierda */
+  position: fixed; /* Fijar el menú al lado izquierdo de la pantalla */
+  right: 0;
+  top: 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Sombra en el lado izquierdo */
+  font-family: monospace;
+}
+
+/* Estilo para los elementos del menú */
+.menu-horizontal li {
+  margin: 0;
+  padding: 10px 20px; /* Espaciado interno de los elementos */
+}
+
+/* Estilo para los enlaces del menú */
+.menu-horizontal a {
+  color: white; /* Color de las letras blancas */
+  text-decoration: none; /* Quitar subrayado a los enlaces */
+  font-size: 16px; /* Tamaño de la letra */
+}
+
+.menu-horizontal a:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Fondo semitransparente al pasar el mouse */
+}

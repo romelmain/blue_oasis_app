@@ -1,0 +1,6 @@
+header {
+  background-image: url("/images/h5.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 70px; /* Ajusta la altura según tus necesidades */
+}
