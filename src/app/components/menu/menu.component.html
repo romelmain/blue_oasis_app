@@ -1,9 +1,10 @@
 <div><span>BLUE OASIS HOTEL</span></div>
 <nav>
   <ul class="menu-horizontal">
-    <li><a href="#">About</a></li>
-    <li><a href="#">Projects</a></li>
-    <li><a href="#">News</a></li>
-    <li><a href="#">Contact</a></li>
+    @for (item of items; track $index) {
+    <li>
+      <a href="#">{{ item }}</a>
+    </li>
+    }
   </ul>
 </nav>
