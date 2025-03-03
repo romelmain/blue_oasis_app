@@ -15,7 +15,7 @@ export class MenuComponent {
   constructor(private menuService: MenuService) {
     this.headerMenu = {
       role: '',
-      username: '',
+      userName: '',
       menu: [],
     };
     this.menu = [];
