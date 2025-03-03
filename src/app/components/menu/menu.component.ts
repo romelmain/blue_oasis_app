@@ -40,4 +40,8 @@ export class MenuComponent {
     console.log(this.headerMenu);
     console.log(this.menu);
   }
+
+  logout() {
+    alert('LOGOUT');
+  }
 }
