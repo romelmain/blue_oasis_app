@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Menu from '../models/Menu';
+import HeaderMenu from '../models/HeaderMenu';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,6 @@ export class MenuService {
 
   getMenu() {
     const headers = { Authorization: this.authorization };
-    return this.http.get<Menu>(this.API_URL, { headers });
+    return this.http.get<HeaderMenu>(this.API_URL, { headers });
   }
 }

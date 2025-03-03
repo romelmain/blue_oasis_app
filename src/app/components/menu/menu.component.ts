@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import Menu from '../../models/Menu';
+import HeaderMenu from '../../models/HeaderMenu';
 
 @Component({
   selector: 'app-menu',
@@ -9,23 +10,23 @@ import Menu from '../../models/Menu';
   styleUrl: './menu.component.css',
 })
 export class MenuComponent {
-  menu: Menu;
-  items: Array<String>;
+  headerMenu: HeaderMenu;
+  menu: Array<Menu>;
   constructor(private menuService: MenuService) {
-    this.menu = {
+    this.headerMenu = {
       role: '',
       username: '',
-      authorities: [],
+      menu: [],
     };
-    this.items = [''];
+    this.menu = [];
     this.getMenu();
   }
 
   getMenu() {
     this.menuService.getMenu().subscribe({
       next: (data) => {
-        this.menu = data;
-        this.items = data.authorities;
+        this.headerMenu = data;
+        this.menu = data.menu;
         this.prueba();
       },
       error: (e) => {
@@ -35,7 +36,7 @@ export class MenuComponent {
   }
 
   prueba() {
+    console.log(this.headerMenu);
     console.log(this.menu);
-    console.log(this.items);
   }
 }

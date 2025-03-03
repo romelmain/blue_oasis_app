@@ -1,5 +1,4 @@
 export default interface Menu {
-  username: string;
-  role: string;
-  authorities: Array<String>;
+  name: string;
+  path: string;
 }
