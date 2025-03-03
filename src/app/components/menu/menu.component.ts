@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import Menu from '../../models/Menu';
 import HeaderMenu from '../../models/HeaderMenu';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css',
 })
