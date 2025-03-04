@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout',
@@ -10,6 +11,8 @@ import { InputTextModule } from 'primeng/inputtext';
   imports: [Dialog, ButtonModule, InputTextModule],
 })
 export class LogoutComponent {
+  constructor(private router: Router) {}
+
   visible: boolean = false;
 
   showDialog() {
@@ -18,6 +21,7 @@ export class LogoutComponent {
 
   deleteToken() {
     localStorage.removeItem('token');
+    this.router.navigate(['/login']);
     this.visible = false;
   }
 }
