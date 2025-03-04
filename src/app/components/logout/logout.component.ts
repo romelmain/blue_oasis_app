@@ -20,8 +20,9 @@ export class LogoutComponent {
   }
 
   deleteToken() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
     this.visible = false;
+    localStorage.removeItem('token');
+    //this.router.navigate(['/login']);
+    location.reload();
   }
 }
