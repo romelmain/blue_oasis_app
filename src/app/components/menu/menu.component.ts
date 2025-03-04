@@ -3,10 +3,11 @@ import { MenuService } from '../../services/menu.service';
 import Menu from '../../models/Menu';
 import HeaderMenu from '../../models/HeaderMenu';
 import { RouterLink } from '@angular/router';
+import { LogoutComponent } from '../logout/logout.component';
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterLink],
+  imports: [RouterLink, LogoutComponent],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css',
 })

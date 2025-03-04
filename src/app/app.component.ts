@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { PrimeNG } from 'primeng/config';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,10 @@ import { Router, RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'blue_oasis_app';
   path: Array<String>;
-  constructor(private router: Router) {
+  constructor(private router: Router, private primeng: PrimeNG) {
     if (localStorage.getItem('token')) {
       console.log('Hay Token');
       this.path = [''];
@@ -19,5 +20,9 @@ export class AppComponent {
       this.path = ['/login'];
     }
     this.router.navigate(this.path);
+  }
+
+  ngOnInit(): void {
+    this.primeng.ripple.set(true);
   }
 }
