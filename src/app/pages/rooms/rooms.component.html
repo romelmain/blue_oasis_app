@@ -1,3 +1,8 @@
 <app-header></app-header>
-<app-room></app-room>
-<p>rooms works!</p>
+<section class="container">
+  @for (room of rooms; track $index) {
+
+  <app-room [room]="room"></app-room>
+
+  }
+</section>

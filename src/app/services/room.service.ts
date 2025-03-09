@@ -13,6 +13,6 @@ export class RoomService {
 
   getRooms() {
     const headers = { Authorization: this.authorization };
-    return this.http.get<Room>(this.API_URL, { headers });
+    return this.http.get<Room[]>(this.API_URL, { headers });
   }
 }

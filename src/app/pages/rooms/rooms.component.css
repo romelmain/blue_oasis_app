@@ -1,0 +1,18 @@
+.container {
+  background-color: rgb(255, 252, 251);
+  border: 3px solid rgba(0, 0, 0, 0.423);
+  border-radius: 6px;
+  display: grid;
+  /* 100 / 7 */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.container div {
+  background: rgb(251, 251, 251);
+  border: 2px solid rgb(251, 252, 252);
+  border-radius: 6px;
+}
+
+body {
+  background: #ddd;
+}

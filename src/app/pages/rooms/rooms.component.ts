@@ -13,10 +13,13 @@ import { RoomComponent } from '../../components/room/room.component';
 })
 export class RoomsComponent {
   room: Room;
+  rooms: Array<Room>;
   imageRoomList: Array<ImageRoom>;
   constructor(private roomService: RoomService) {
+    this.rooms = [];
     this.room = {
       id: 0,
+      number: 0,
       availability: false,
       price: 0,
       createAt: '',
@@ -30,7 +33,7 @@ export class RoomsComponent {
   getRooms() {
     this.roomService.getRooms().subscribe({
       next: (data) => {
-        this.room = data;
+        this.rooms = data;
         console.log(data);
       },
       error: (e) => {
