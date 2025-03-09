@@ -4,15 +4,14 @@
       <img
         alt="Card"
         class="w-full"
+        width="500px"
+        height="350px"
         src="{{ getMainImage(room()?.imageRoom) }}"
       />
     </ng-template>
     <ng-template #title>Room Number: {{ room()?.number }}° </ng-template>
-    <ng-template #subtitle>
-      availability: {{ room()?.availability }}
-    </ng-template>
+    <p>Availability: {{ room()?.availability }}</p>
     <p>Price: ${{ room()?.price }}</p>
-    <p>{{ getMainImage(room()?.imageRoom) }}</p>
     <ng-template #footer>
       <div class="flex gap-4 mt-1">
         <p-button
