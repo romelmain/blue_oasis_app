@@ -1,13 +1,27 @@
 <div class="card flex justify-center">
-  <p-button (click)="showDialog()" label="Show" />
+  <p-button (click)="showDialog()" label="Show Details" />
   <p-dialog
     header="Room Number: {{ room.number }}"
     [modal]="true"
     [(visible)]="visible"
-    [style]="{ width: '25rem' }"
+    [style]="{ width: '500px', height: '800px' }"
   >
-    <span class="p-text-secondary block mb-8">Update your information.</span>
-    <img src="{{ mainImage }}" />
+    @if (visible == true) {
+    <img id="main" src="{{ imageRoomList[0].image }}" />
+    <section class="container">
+      @for (image of imageRoomList; track $index) {
+      <img
+        id="img-{{ $index }}"
+        (click)="changeImage($index)"
+        src="{{ imageRoomList[$index].image }}"
+      />
+      }
+    </section>
+    <div></div>
+    }
+
+    <span class="p-text-secondary block mb-8">Beautiful Room !!.</span>
+
     <div>
       <p-button label="Cancel" severity="secondary" (click)="visible = false" />
       <p-button label="Save" (click)="visible = false" />

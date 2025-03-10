@@ -1,0 +1,19 @@
+.container {
+  background-color: rgb(255, 252, 251);
+
+  display: grid;
+  /* 100 / 7 */
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  padding: 4px;
+}
+
+.container img {
+  width: 100px;
+  height: 100px;
+}
+
+#main {
+  width: 250px;
+  height: 230px;
+}

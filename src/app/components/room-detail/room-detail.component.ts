@@ -5,6 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RoomService } from '../../services/room.service';
 import Room from '../../models/room';
 import ImageRoom from '../../models/imageRoom';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-room-detail',
@@ -16,7 +17,6 @@ import ImageRoom from '../../models/imageRoom';
 export class RoomDetailComponent {
   visible: boolean = false;
   inputRoomId = input<any | number>();
-
   room: Room;
   imageRoomList: Array<ImageRoom>;
   mainImage: string;
@@ -40,7 +40,6 @@ export class RoomDetailComponent {
     console.log('El id es: ' + this.inputRoomId());
     const id = this.inputRoomId();
     this.getRoomById(id);
-    this.visible = true;
   }
 
   getRoomById(id: number) {
@@ -50,14 +49,27 @@ export class RoomDetailComponent {
         console.log(data);
         this.imageRoomList = data.imageRoom;
         this.mainImage = this.imageRoomList[0].image;
+        console.log(this.imageRoomList);
       },
       error: (e) => {
         console.log(e);
       },
+      complete: () => {
+        this.activateDialog();
+      },
     });
   }
 
-  prueba() {
-    alert('Prueba desde Room Detail Component');
+  activateDialog() {
+    this.visible = true;
+  }
+
+  changeImage(index: number) {
+    const id = 'img-' + index;
+    const imgMainElement = document.querySelector('#main');
+    imgMainElement?.removeAttribute('src');
+    const imgElement = document.querySelector('#' + id);
+    let src = imgElement?.getAttribute('src') ?? 'default name';
+    imgMainElement?.setAttribute('src', src);
   }
 }
