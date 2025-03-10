@@ -15,7 +15,7 @@ import ImageRoom from '../../models/imageRoom';
 })
 export class RoomDetailComponent {
   visible: boolean = false;
-  inputRoomId = input<number>(0);
+  inputRoomId = input<any | number>();
 
   room: Room;
   imageRoomList: Array<ImageRoom>;
