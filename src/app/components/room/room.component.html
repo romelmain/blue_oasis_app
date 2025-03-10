@@ -10,18 +10,13 @@
       />
     </ng-template>
     <ng-template #title>Room Number: {{ room()?.number }}° </ng-template>
-    <p>Availability: {{ room()?.availability }}</p>
-    <p>Price: ${{ room()?.price }}</p>
+    <p>
+      Availability: {{ room()?.availability }} | Price: ${{ room()?.price }}
+    </p>
+    <p></p>
     <ng-template #footer>
       <div class="flex gap-4 mt-1">
-        <p-button
-          label="Cancel"
-          severity="secondary"
-          class="w-full"
-          [outlined]="true"
-          styleClass="w-full"
-        />
-        <p-button label="Save" class="w-full" styleClass="w-full" />
+        <app-room-detail [inputRoomId]="room()?.id"></app-room-detail>
       </div>
     </ng-template>
   </p-card>

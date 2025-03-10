@@ -1,0 +1,16 @@
+<div class="card flex justify-center">
+  <p-button (click)="showDialog()" label="Show" />
+  <p-dialog
+    header="Room Number: {{ room.number }}"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '25rem' }"
+  >
+    <span class="p-text-secondary block mb-8">Update your information.</span>
+    <img src="{{ mainImage }}" />
+    <div>
+      <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+      <p-button label="Save" (click)="visible = false" />
+    </div>
+  </p-dialog>
+</div>

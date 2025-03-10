@@ -15,4 +15,9 @@ export class RoomService {
     const headers = { Authorization: this.authorization };
     return this.http.get<Room[]>(this.API_URL, { headers });
   }
+
+  getRoomsById(id: number) {
+    const headers = { Authorization: this.authorization };
+    return this.http.get<Room>(`${this.API_URL}/${id}`, { headers });
+  }
 }
