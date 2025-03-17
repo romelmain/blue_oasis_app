@@ -22,6 +22,9 @@ export class LogoutComponent {
   deleteToken() {
     this.visible = false;
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('guest_id');
+
     //this.router.navigate(['/login']);
     location.reload();
   }

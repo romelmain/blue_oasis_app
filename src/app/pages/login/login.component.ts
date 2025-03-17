@@ -14,8 +14,10 @@ export class LoginComponent {
   password: FormControl;
   status: string;
   token: string;
+  user: string;
   constructor(private router: Router, public loginService: LoginService) {
     this.status = 'false';
+    this.user = '';
     this.token = '';
     this.username = new FormControl('');
     this.password = new FormControl('');
@@ -32,7 +34,9 @@ export class LoginComponent {
       next: (data) => {
         console.log(data);
         this.token = data.jwt;
+        this.user = data.username;
         this.saveToken();
+        this.router.navigate(['']);
       },
       error: (e) => {
         console.log(e);
@@ -42,6 +46,6 @@ export class LoginComponent {
 
   saveToken() {
     localStorage.setItem('token', this.token);
-    this.router.navigate(['']);
+    localStorage.setItem('user', this.user);
   }
 }

@@ -1,2 +1,6 @@
 <app-header></app-header>
-<p>home works!</p>
+@if (guest) {
+<p>Hay Guest</p>
+}@else {
+<app-new-guest></app-new-guest>
+}
