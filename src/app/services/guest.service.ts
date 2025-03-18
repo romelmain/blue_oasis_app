@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import Guest from '../models/Guest';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +14,10 @@ export class GuestService {
   getGuestByUser(user: string) {
     const headers = { Authorization: this.authorization };
     return this.http.get<any>(`${this.API_URL}user/${user}`, { headers });
+  }
+
+  postGuest(guest: Guest) {
+    const headers = { Authorization: this.authorization };
+    return this.http.post<any>(this.API_URL, guest, { headers });
   }
 }

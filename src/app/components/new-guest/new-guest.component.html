@@ -1,9 +1,9 @@
-<form>
+<form [formGroup]="newGuestForm">
   <fieldset>
-    <input type="text" placeholder="Name" />
-    <input type="text" placeholder="Last Name" />
-    <input type="text" placeholder="Phone" />
-    <input type="text" placeholder="Address" />
-    <button>Save</button>
+    <input type="text" formControlName="name" placeholder="Name" />
+    <input type="text" formControlName="lastname" placeholder="Last Name" />
+    <input type="text" formControlName="phone" placeholder="Phone" />
+    <input type="text" formControlName="address" placeholder="Address" />
+    <button (click)="postGuest()">Save</button>
   </fieldset>
 </form>
