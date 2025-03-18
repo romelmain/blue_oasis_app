@@ -36,13 +36,11 @@ export class NewGuestComponent {
     console.log(this.newGuestForm.value);
     let newGuest = this.newGuestForm.value;
     newGuest.username = this.username;
-    console.log('TOKEN');
-    console.log(localStorage.getItem('token'));
-    console.log(newGuest);
 
     this.guestService.postGuest(newGuest).subscribe({
       next: (data) => {
         console.log(data);
+        location.reload();
       },
       error: (e) => {
         console.log(e);

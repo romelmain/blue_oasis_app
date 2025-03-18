@@ -26,7 +26,6 @@ export class HomeComponent {
   getGuestByUser(user: string) {
     this.guestService.getGuestByUser(user).subscribe({
       next: (data) => {
-        //this.status = data.status;
         console.log('guest id ' + data.id);
         this.guest = true;
         localStorage.setItem('guest_id', data.id);

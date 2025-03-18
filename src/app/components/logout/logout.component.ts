@@ -25,7 +25,6 @@ export class LogoutComponent {
     localStorage.removeItem('user');
     localStorage.removeItem('guest_id');
 
-    //this.router.navigate(['/login']);
     location.reload();
   }
 }
