@@ -4,7 +4,7 @@
     header="Room Number: {{ room.number }}"
     [modal]="true"
     [(visible)]="visible"
-    [style]="{ width: '500px', height: '800px' }"
+    [style]="{ width: '600px', height: '600px' }"
   >
     @if (visible == true) {
     <img id="main" src="{{ imageRoomList[0].image }}" />
@@ -17,11 +17,30 @@
       />
       }
     </section>
-    <div></div>
     }
-
-    <span class="p-text-secondary block mb-8">Beautiful Room !!.</span>
-
+    <section class="bookingForm">
+      <p-datepicker
+        [(ngModel)]="checkinday"
+        size="small"
+        placeholder="Check in Day"
+        showIcon
+        iconDisplay="input"
+      />
+      <p-inputnumber
+        [(ngModel)]="days"
+        [showButtons]="true"
+        buttonLayout="horizontal"
+        inputId="horizontal"
+        spinnerMode="horizontal"
+      >
+        <ng-template #incrementbuttonicon>
+          <span class="pi pi-plus">+</span>
+        </ng-template>
+        <ng-template #decrementbuttonicon>
+          <span class="pi pi-minus">-</span>
+        </ng-template>
+      </p-inputnumber>
+    </section>
     <div>
       <p-button label="Cancel" severity="secondary" (click)="visible = false" />
       <p-button label="Save" (click)="visible = false" />

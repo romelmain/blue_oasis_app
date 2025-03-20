@@ -6,14 +6,15 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2px;
   padding: 4px;
+  place-content: center;
 }
 
 .container img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
 }
 
 #main {
-  width: 250px;
-  height: 230px;
+  width: 65%;
+  height: 65%;
 }

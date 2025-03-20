@@ -5,22 +5,38 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RoomService } from '../../services/room.service';
 import Room from '../../models/room';
 import ImageRoom from '../../models/imageRoom';
+import { DatePickerModule } from 'primeng/datepicker';
+import { InputNumber } from 'primeng/inputnumber';
+import { FloatLabel } from 'primeng/floatlabel';
+
 import { query } from '@angular/animations';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-room-detail',
-  imports: [Dialog, ButtonModule, InputTextModule],
+  imports: [
+    Dialog,
+    DatePickerModule,
+    ButtonModule,
+    InputTextModule,
+    FormsModule,
+    FloatLabel,
+    InputNumber,
+  ],
   templateUrl: './room-detail.component.html',
   standalone: true,
   styleUrl: './room-detail.component.css',
 })
 export class RoomDetailComponent {
+  checkinday: Date | undefined;
   visible: boolean = false;
   inputRoomId = input<any | number>();
   room: Room;
   imageRoomList: Array<ImageRoom>;
   mainImage: string;
+  days: number;
   constructor(private roomService: RoomService) {
+    this.days = 0;
     this.mainImage = '';
     this.room = {
       id: 0,
@@ -35,8 +51,6 @@ export class RoomDetailComponent {
   }
 
   showDialog() {
-    console.log('INPUT');
-    console.log('aaaaaaaaa' + this.inputRoomId + 'bbbbbb');
     console.log('El id es: ' + this.inputRoomId());
     const id = this.inputRoomId();
     this.getRoomById(id);
