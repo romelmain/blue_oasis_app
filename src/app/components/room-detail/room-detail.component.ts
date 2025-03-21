@@ -7,10 +7,9 @@ import Room from '../../models/room';
 import ImageRoom from '../../models/imageRoom';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputNumber } from 'primeng/inputnumber';
-import { FloatLabel } from 'primeng/floatlabel';
-
-import { query } from '@angular/animations';
 import { FormsModule } from '@angular/forms';
+import { BookingService } from '../../services/booking.service';
+import Booking from '../../models/booking';
 
 @Component({
   selector: 'app-room-detail',
@@ -20,7 +19,6 @@ import { FormsModule } from '@angular/forms';
     ButtonModule,
     InputTextModule,
     FormsModule,
-    FloatLabel,
     InputNumber,
   ],
   templateUrl: './room-detail.component.html',
@@ -35,7 +33,11 @@ export class RoomDetailComponent {
   imageRoomList: Array<ImageRoom>;
   mainImage: string;
   days: number;
-  constructor(private roomService: RoomService) {
+  guestId = localStorage.getItem('guest_id');
+  constructor(
+    private roomService: RoomService,
+    private bookingService: BookingService
+  ) {
     this.days = 0;
     this.mainImage = '';
     this.room = {
@@ -85,5 +87,53 @@ export class RoomDetailComponent {
     const imgElement = document.querySelector('#' + id);
     let src = imgElement?.getAttribute('src') ?? 'default name';
     imgMainElement?.setAttribute('src', src);
+  }
+
+  getDate(dateIn: any) {
+    console.log();
+
+    const inputDate = new Date(dateIn);
+    const year = inputDate.getFullYear();
+    const month = String(inputDate.getMonth() + 1).padStart(2, '0');
+    const day = String(inputDate.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    console.log(formattedDate);
+    return formattedDate;
+  }
+
+  plusDays(dateIn: any, plus: number) {
+    const inputDate = new Date(dateIn);
+    inputDate.setDate(inputDate.getDate() + plus); // Sumar 2 días
+    const year = inputDate.getFullYear();
+    const month = String(inputDate.getMonth() + 1).padStart(2, '0'); // Los meses comienzan en 0
+    const day = String(inputDate.getDate()).padStart(2, '0');
+    const newDate = `${year}-${month}-${day}`;
+    console.log(newDate);
+    return newDate;
+  }
+
+  postBooking(roomId: number) {
+    let today = this.getDate(new Date());
+    let newBooking: Booking;
+
+    newBooking = {
+      createAt: today,
+      updateAt: today,
+      date: today,
+      checkInDate: this.getDate(this.checkinday),
+      checkOutDate: this.plusDays(this.checkinday, this.days),
+      guestId: Number(this.guestId),
+      roomList: [{ roomId: roomId }],
+    };
+    console.log(newBooking);
+    this.bookingService.postBooking(newBooking).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.visible = false;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
   }
 }
