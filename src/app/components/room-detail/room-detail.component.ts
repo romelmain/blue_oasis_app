@@ -115,18 +115,16 @@ export class RoomDetailComponent implements OnInit {
     const month = String(inputDate.getMonth() + 1).padStart(2, '0');
     const day = String(inputDate.getDate()).padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
-    console.log(formattedDate);
     return formattedDate;
   }
 
   plusDays(dateIn: any, plus: number) {
     const inputDate = new Date(dateIn);
-    inputDate.setDate(inputDate.getDate() + plus); // Sumar 2 días
+    inputDate.setDate(inputDate.getDate() + plus); // Suma dias
     const year = inputDate.getFullYear();
-    const month = String(inputDate.getMonth() + 1).padStart(2, '0'); // Los meses comienzan en 0
+    const month = String(inputDate.getMonth() + 1).padStart(2, '0');
     const day = String(inputDate.getDate()).padStart(2, '0');
     const newDate = `${year}-${month}-${day}`;
-    console.log(newDate);
     return newDate;
   }
 

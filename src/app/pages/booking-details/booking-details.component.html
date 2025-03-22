@@ -1,2 +1,29 @@
 <app-header></app-header>
-<p>booking-details works!</p>
+<br />
+<label><b>Booking Number:</b></label> {{ booking.id }}
+<br />
+<label><b>Booking Date:</b></label> {{ formateDate(booking.date) }}
+<br />
+<label><b>Check In Date:</b></label> {{ formateDate(booking.checkInDate) }}
+<br />
+<label><b>Check Out Date:</b></label> {{ formateDate(booking.checkOutDate) }}
+<div class="card">
+  <p-table [value]="rooms" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #header>
+      <tr>
+        <th>Image</th>
+        <th>Number</th>
+        <th>Price</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-room>
+      <tr>
+        <td>
+          <img src="{{ room.imageRoom[0].image }}" width="60px" height="60px" />
+        </td>
+        <td>{{ room.number }}</td>
+        <td>{{ room.price }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
