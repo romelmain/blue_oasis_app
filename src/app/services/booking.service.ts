@@ -18,4 +18,12 @@ export class BookingService {
     };
     return this.http.post<any>(this.API_URL, booking, { headers });
   }
+
+  getBookingByGuest(guestId: number) {
+    const headers = {
+      Authorization: this.authorization,
+      'Content-Type': 'application/json',
+    };
+    return this.http.get<any>(`${this.API_URL}/guest/${guestId}`, { headers });
+  }
 }

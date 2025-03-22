@@ -1,11 +1,12 @@
 import RoomReq from './roomReq';
 
 export default interface Booking {
-  createAt: String;
-  updateAt: String;
-  date: String;
-  checkInDate: String;
-  checkOutDate: String;
+  bookingId?: number;
+  createAt?: String;
+  updateAt?: String;
+  date?: String;
+  checkInDate?: String;
+  checkOutDate?: String;
   guestId: number;
   roomList: Array<RoomReq>;
 }

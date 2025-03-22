@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -25,7 +25,7 @@ import Booking from '../../models/booking';
   standalone: true,
   styleUrl: './room-detail.component.css',
 })
-export class RoomDetailComponent {
+export class RoomDetailComponent implements OnInit {
   checkinday: Date | undefined;
   visible: boolean = false;
   inputRoomId = input<any | number>();
@@ -34,10 +34,13 @@ export class RoomDetailComponent {
   mainImage: string;
   days: number;
   guestId = localStorage.getItem('guest_id');
+  nguestId = Number(this.guestId);
+  bookingId: number;
   constructor(
     private roomService: RoomService,
     private bookingService: BookingService
   ) {
+    this.bookingId = 0;
     this.days = 0;
     this.mainImage = '';
     this.room = {
@@ -51,11 +54,26 @@ export class RoomDetailComponent {
     };
     this.imageRoomList = [];
   }
-
+  ngOnInit(): void {}
   showDialog() {
     console.log('El id es: ' + this.inputRoomId());
     const id = this.inputRoomId();
     this.getRoomById(id);
+    this.getBookingByGuest();
+  }
+
+  getBookingByGuest() {
+    this.bookingService.getBookingByGuest(this.nguestId).subscribe({
+      next: (data) => {
+        this.bookingId = data.id;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+      complete: () => {
+        console.log('bookingId' + this.bookingId);
+      },
+    });
   }
 
   getRoomById(id: number) {
@@ -117,14 +135,33 @@ export class RoomDetailComponent {
     let newBooking: Booking;
 
     newBooking = {
-      createAt: today,
-      updateAt: today,
-      date: today,
-      checkInDate: this.getDate(this.checkinday),
-      checkOutDate: this.plusDays(this.checkinday, this.days),
-      guestId: Number(this.guestId),
-      roomList: [{ roomId: roomId }],
+      createAt: '',
+      updateAt: '',
+      date: '',
+      checkInDate: '',
+      checkOutDate: '',
+      guestId: 0,
+      roomList: [],
     };
+
+    if (this.bookingId == 0) {
+      newBooking = {
+        createAt: today,
+        updateAt: today,
+        date: today,
+        checkInDate: this.getDate(this.checkinday),
+        checkOutDate: this.plusDays(this.checkinday, this.days),
+        guestId: this.nguestId,
+        roomList: [{ roomId: roomId }],
+      };
+    } else if (this.bookingId != 0) {
+      newBooking = {
+        bookingId: this.bookingId,
+        guestId: this.nguestId,
+        roomList: [{ roomId: roomId }],
+      };
+    }
+
     console.log(newBooking);
     this.bookingService.postBooking(newBooking).subscribe({
       next: (data) => {
