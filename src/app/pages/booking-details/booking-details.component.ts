@@ -4,10 +4,11 @@ import { TableModule } from 'primeng/table';
 import Booking from '../../models/booking';
 import Room from '../../models/room';
 import { BookingService } from '../../services/booking.service';
+import { PayGoogleComponent } from '../../components/pay-google/pay-google.component';
 
 @Component({
   selector: 'app-booking-details',
-  imports: [HeaderComponent, TableModule],
+  imports: [HeaderComponent, TableModule, PayGoogleComponent],
   templateUrl: './booking-details.component.html',
   styleUrl: './booking-details.component.css',
 })
