@@ -16,8 +16,11 @@ export class BookingDetailsComponent implements OnInit {
   rooms!: Room[];
   guestId = localStorage.getItem('guest_id');
   nguestId = Number(this.guestId);
+  total: number;
 
-  constructor(private bookingService: BookingService) {}
+  constructor(private bookingService: BookingService) {
+    this.total = 0.0;
+  }
 
   ngOnInit(): void {
     this.bookingService.getBookingByGuest(this.nguestId).subscribe({
@@ -25,6 +28,16 @@ export class BookingDetailsComponent implements OnInit {
         console.log(data);
         this.booking = data;
         this.rooms = data.rooms;
+        const precios = this.rooms.map((obj) => obj.price);
+        console.log('PRECIOS: ');
+        console.log(precios);
+        const total = precios.reduce(
+          (acumulador, elemento) => acumulador + elemento,
+          0
+        );
+        console.log('TOTAL: ');
+        console.log(total);
+        this.total = total;
       },
       error: (e) => {
         console.log(e);
