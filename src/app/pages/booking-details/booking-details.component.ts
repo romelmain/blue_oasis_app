@@ -18,7 +18,7 @@ export class BookingDetailsComponent implements OnInit {
   guestId = localStorage.getItem('guest_id');
   nguestId = Number(this.guestId);
   total: number;
-
+  totalPrice!: string;
   constructor(private bookingService: BookingService) {
     this.total = 0.0;
   }
@@ -43,6 +43,13 @@ export class BookingDetailsComponent implements OnInit {
       error: (e) => {
         console.log(e);
       },
+      complete: () => {
+        this.totalPrice = this.total.toFixed(2);
+        console.log('Total');
+        console.log(this.total);
+        console.log('Total Price');
+        console.log(this.totalPrice);
+      },
     });
   }
 
@@ -52,7 +59,6 @@ export class BookingDetailsComponent implements OnInit {
     const month = String(inputDate.getMonth() + 1).padStart(2, '0');
     const day = String(inputDate.getDate()).padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
-    console.log(formattedDate);
     return formattedDate;
   }
 }

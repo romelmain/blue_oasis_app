@@ -29,9 +29,11 @@
       <tr>
         <td></td>
         <td><b>Total:</b></td>
-        <td>{{ total }}</td>
+        <td id="xx">{{ totalPrice }}</td>
       </tr>
     </ng-template>
   </p-table>
 </div>
-<app-pay-google></app-pay-google>
+@if (total > 0) {
+<app-pay-google [totalPrice]="totalPrice"></app-pay-google>
+}

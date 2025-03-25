@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { GooglePayButtonModule } from '@google-pay/button-angular';
 
 @Component({
@@ -11,7 +11,8 @@ import { GooglePayButtonModule } from '@google-pay/button-angular';
 export class PayGoogleComponent {
   buttonWidth = 240;
 
-  totalToto = 200.0;
+  @Input()
+  totalPrice!: string;
 
   paymentRequest: google.payments.api.PaymentDataRequest = {
     apiVersion: 2,
@@ -39,7 +40,7 @@ export class PayGoogleComponent {
     transactionInfo: {
       totalPriceStatus: 'FINAL',
       totalPriceLabel: 'Total',
-      totalPrice: this.totalToto.toFixed(),
+      totalPrice: '430',
       currencyCode: 'USD',
       countryCode: 'US',
     },
@@ -51,5 +52,9 @@ export class PayGoogleComponent {
 
   onError = (event: ErrorEvent): void => {
     console.error('error', event.error);
+  };
+
+  onClick = (event: Event): void => {
+    console.log('click');
   };
 }
