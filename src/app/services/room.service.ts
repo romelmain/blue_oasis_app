@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Room from '../models/room';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoomService {
-  readonly API_URL = 'http://localhost:8080/rooms';
+  readonly API_URL = environment.roomUrl;
   token = localStorage.getItem('token');
   authorization: string = 'Bearer ' + this.token;
   constructor(private http: HttpClient) {}

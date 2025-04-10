@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Menu from '../models/Menu';
 import HeaderMenu from '../models/HeaderMenu';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MenuService {
-  readonly API_URL = 'http://localhost:8080/menu';
+  readonly API_URL = environment.menuUrl;
   token = localStorage.getItem('token');
   authorization: string = 'Bearer ' + this.token;
 

@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Guest from '../models/Guest';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GuestService {
-  readonly API_URL = 'http://localhost:8080/guest';
+  readonly API_URL = environment.guestUrl;
   token = localStorage.getItem('token');
   authorization: string = 'Bearer ' + this.token;
   constructor(private http: HttpClient) {}

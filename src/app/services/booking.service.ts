@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Booking from '../models/booking';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookingService {
-  readonly API_URL = 'http://localhost:8080/booking';
+  readonly API_URL = environment.bookingUrl;
   token = localStorage.getItem('token');
   authorization: string = 'Bearer ' + this.token;
   constructor(private http: HttpClient) {}
