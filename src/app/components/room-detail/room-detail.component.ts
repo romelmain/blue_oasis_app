@@ -115,7 +115,7 @@ export class RoomDetailComponent implements OnInit {
     const month = String(inputDate.getMonth() + 1).padStart(2, '0');
     const day = String(inputDate.getDate()).padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
-    return formattedDate;
+    return formattedDate + 'T00:00:00.000-04:00';
   }
 
   plusDays(dateIn: any, plus: number) {
@@ -125,7 +125,7 @@ export class RoomDetailComponent implements OnInit {
     const month = String(inputDate.getMonth() + 1).padStart(2, '0');
     const day = String(inputDate.getDate()).padStart(2, '0');
     const newDate = `${year}-${month}-${day}`;
-    return newDate;
+    return newDate + 'T00:00:00.000-04:00';
   }
 
   postBooking(roomId: number) {
@@ -141,6 +141,10 @@ export class RoomDetailComponent implements OnInit {
       guestId: 0,
       roomList: [],
     };
+
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+    console.log(this.checkinday + 'T00:00:00.000-04:00');
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
 
     if (this.bookingId == 0) {
       newBooking = {
